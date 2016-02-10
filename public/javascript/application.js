@@ -1,29 +1,55 @@
-$(document).ready(function() {
+$(function() {
+
+  // populates tables with contact information
+  var populateTable = function(contacts, tableName) {
+    var table = $(tableName).find('tbody').empty();
+    contacts.forEach(function(contact) {
+      var row = $('<tr>').appendTo(table);
+      row.attr('data-id', contact.id);
+      $('<td>').text(contact.id).appendTo(row);
+      $('<td>').text(contact.first_name).appendTo(row);
+      $('<td>').text(contact.last_name).appendTo(row);
+      $('<td>').text(contact.email).appendTo(row);
+      row.appendTo($(tableName + ' tbody'));
+    });
+  }
+
+  // hides all forms other than 'form'
+  var showForm = function(form) {
+    var allForms = [ '#all', 
+                    '#contact-form', 
+                    '#delete-form', 
+                    '#search-form'];
+    for(var i = 0; i < allForms.length; i++) {
+      if(allForms[i] === form) {
+        continue;
+      }
+      $(allForms[i]).hide();
+    }
+    $(form).slideDown();
+  }
 
   $('#btn-all').on('click', function() {
     $('#contact-form').hide();
     $('#search-form').hide();
     $('#delete-form').hide();
+
     $.getJSON('/contacts', function(contacts) {
-      var table = $('#all-contacts').find('#new-body').empty();
-      contacts.forEach(function(contact) {
-        var row = $('<tr>').addClass('contact').appendTo(table);
-        row.attr('data-id', contact.id);
-        $('<td>').text(contact.id).appendTo(row);
-        $('<td>').text(contact.first_name).appendTo(row);
-        $('<td>').text(contact.last_name).appendTo(row);
-        $('<td>').text(contact.email).appendTo(row);
-        row.appendTo($('#new-body'));
-      });
+      populateTable(contacts, '#all-contacts');
       $('#all').slideDown();
     });
   });
 
+  $('#btn-delete').on('click', function() {
+    showForm('#delete-form');
+  });
+
   $('#btn-create').on('click', function() {
-    $('#all').hide();
-    $('#search-form').hide();
-    $('#delete-form').hide();
-    $('#contact-form').slideDown();
+    showForm('#contact-form');
+  });
+
+  $('#btn-search').on('click', function() {
+    showForm('#search-form');
   });
 
   $('#newContact').on('submit', function() {
@@ -46,15 +72,7 @@ $(document).ready(function() {
         alert("Whomp whomp, something went wrong. Fail whale.");
       }
     }, 'json');
-
     return false;
-  });
-
-  $('#btn-search').on('click', function() {
-    $('#all').hide();
-    $('#contact-form').hide();
-    $('#delete-form').hide();
-    $('#search-form').slideDown();
   });
 
   $('#searchContact').on('submit', function() {
@@ -64,25 +82,10 @@ $(document).ready(function() {
     var email = $('#email-search').val();
 
     $.getJSON('/search', {id: contactID, first_name: firstName, last_name: lastName, email: email}, function(contacts) {
-      var table = $('#matching-contacts').find('#search-body').empty();
-      contacts.forEach(function(contact) {
-        var row = $('<tr>').addClass('match').appendTo(table);
-        $('<td>').text(contact.id).appendTo(row);
-        $('<td>').text(contact.first_name).appendTo(row);
-        $('<td>').text(contact.last_name).appendTo(row);
-        $('<td>').text(contact.email).appendTo(row);
-        row.appendTo($('#search-body'));  
-      });
+      populateTable(contacts, '#matching-contacts');
     });
     return false;
   });
-
-  $('#btn-delete').on('click', function() {
-    $('#all').hide();
-    $('#contact-form').hide();
-    $('#search-form').hide();
-    $('#delete-form').slideDown();
-  })
 
   $('#delete-form').on('submit', function(e) {
     e.preventDefault();
