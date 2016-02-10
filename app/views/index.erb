@@ -1,0 +1,85 @@
+<h1>Contact List IV: Revenge of the Contact App <i class="material-icons">import_contacts</i></h1>
+<hr/>
+
+<div class="row">
+  <button id="btn-all" class="btn btn-default col-md-2">List All Contacts</button>
+  <button id="btn-create" class="btn btn-default col-md-2">Create New Contact</button>
+  <button id="btn-search" class="btn btn-default col-md-2">Search Contacts</button>
+  <button id="btn-delete"class="btn btn-default col-md-2">Delete Contact</button>
+</div>
+
+<div id="all">
+<fieldset>
+  <legend>All Contacts</legend>
+    <table id="all-contacts" class="table table-hover">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>FIRST NAME</th>
+          <th>LAST NAME</th>
+          <th>EMAIL</th>
+        </tr>
+      </thead>
+      <tbody id="new-body">
+      </tbody>
+    </table>
+  </fieldset>
+</div>
+
+<div id="contact-form">
+  <fieldset>
+    <legend>Add New Contact</legend>
+      <form id="newContact">
+        <label for="first-name">First Name</label>
+        <input type="text" id="first-name" class="form-control" placeholder="First Name"><br>
+        <label for="last-name">Last Name</label>
+        <input type="text" id="last-name" class="form-control" placeholder="Last Name"><br>
+        <label for="email">Email Address</label>
+        <input type="text" id="email" class="form-control" placeholder="Email Address"><br>
+        <button type="submit" id="btn-submit-new" class="btn btn-success">Create Contact</button>
+      </form>
+  </fieldset>
+</div>
+
+<div id="search-form">
+  <fieldset>
+    <legend>Search A Contact</legend>
+      <form id="searchContact">
+        <label for="id">Contact ID Number</label>
+        <input type="text" id="id" class="form-control" placeholder="Contact ID #"><br>
+        <label for="first-search">First Name</label>
+        <input type="text" id="first-search" class="form-control" placeholder="First Name"><br>
+        <label for="last-search">Last Name</label>
+        <input type="text" id="last-search" class="form-control" placeholder="Last Name"><br>
+        <label for="email-search">Email Address</label>
+        <input type="text" id="email-search" class="form-control" placeholder="Email Address"><br>
+        <button type="submit" id="btn-search" class="btn btn-info">Search Contact</button>
+      </form>
+  </fieldset>
+
+  <fieldset>
+    <legend>Search Results</legend>
+    <table id="matching-contacts" class="table table-hover">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>FIRST NAME</th>
+          <th>LAST NAME</th>
+          <th>EMAIL</th>
+        </tr>
+      </thead>
+      <tbody id="search-body"></tbody>
+    </table>
+  </fieldset>
+</div>
+
+<div id="delete-form">
+  <fieldset>
+    <legend>Delete A Contact</legend>
+      <form method="post" id="deleteContact">
+        <label for="delete-id">Contact ID Number</label>
+        <input type="text" id="delete-id" class="form-control" placeholder="Contact ID #"><br>
+        <button type="submit" id="btn-delete" class="btn btn-danger">Delete This Contact</button>
+      </form>
+  </fieldset>
+</div>

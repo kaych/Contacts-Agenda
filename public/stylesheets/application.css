@@ -1,0 +1,34 @@
+body {
+  background-image: url('/images/linedpaper.png');
+  background-repeat: repeat;
+  font-family: 'Roboto';
+}
+
+fieldset {
+  margin-top: 30px;
+}
+
+tr {
+  text-align: left;
+}
+
+h1 {
+  text-align: center;
+}
+
+.row {
+  margin: auto;
+  margin-left: 230px;
+}
+
+.material-icons {
+  font-size: 30px;
+}
+
+#all, #contact-form, #search-form, #delete-form {
+  display: none;
+}
+
+#btn-all, #btn-create, #btn-search, #btn-delete {
+  margin-right: 15px;
+}
