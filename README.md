@@ -1,7 +1,6 @@
-Sinatra
+Contact List 2.0
 =============
-
-Brought to you by Lighthouse Labs
+The second contact-list repo, this time a fully functional single page web app.
 
 ## Getting Started
 
